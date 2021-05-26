@@ -31,7 +31,7 @@ app.whenReady().then(() =>
   // backend,
   // (err, stdout, stderr) => {
   //   if (err) {
-  //   console.log(err);
+  //   console.log(err);npm
   //   }
   //   if (stdout) {
   //   console.log(stdout);

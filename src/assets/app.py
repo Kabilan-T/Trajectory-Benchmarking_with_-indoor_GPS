@@ -37,6 +37,5 @@ def update():
             hedge.stop()  # stop and close serial port
             sys.exit()
     
-    
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,38 +1,30 @@
 {
-  "name": "GPS_Trajectory_GUI",
+  "name": "gps_trajectory_gui",
   "version": "1.0.0",
-  "description": "SDP - Trajectory Benchmarking with indoor GPS",
+  "description": "Software Development Project SS2021 - Trajectory Benchmarking with indoor GPS",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "kabilan <kavikabilan413@gmail.com>",
-  "license": "CC0-1.0",
+  "repository": "https://github.com/Kabilan-T/Trajectory-Benchmarking_with_-indoor_GPS.git",
+  "author": "Kabilan Tamilmani <kabilan.tamilmani@smail.inf.h-brs.de>",
   "devDependencies": {
     "electron": "^12.0.7",
     "electron-builder": "^20.44.4"
   },
   "build": {
-    "appId": "com.kabilan.GPS_Trajectory_GUI",
+    "appId": "com.hbrs.gps_trajectory_gui",
+    "productName": "GPS Trajectory GUI",
     "linux": {
-      "target": [
-        "deb"
-      ],
-      "category": "Utility"
+      "target": ["deb"],
+      "category": "Utility",
+      "icon": "build/ic_516x516.png",
+      "maintainer": "Karthik Sundararaj <karthik.sundararaj@smail.inf.h-brs.de>",
+      "description": "This is description"
     }
   },
   "dependencies": {
-    "childprocess": "^2.0.2",
-    "electron-sudo": "^4.0.12",
-    "sudo-prompt": "^9.2.1"
+    "childprocess": "^2.0.2"
   }
 }
