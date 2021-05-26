@@ -2,7 +2,7 @@
   "name": "GPS_Trajectory_GUI",
   "version": "1.0.0",
   "description": "SDP - Trajectory Benchmarking with indoor GPS",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux"
@@ -29,5 +29,10 @@
       ],
       "category": "Utility"
     }
+  },
+  "dependencies": {
+    "childprocess": "^2.0.2",
+    "electron-sudo": "^4.0.12",
+    "sudo-prompt": "^9.2.1"
   }
 }
