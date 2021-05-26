@@ -1,5 +1,5 @@
-from scripts.marvelmind import MarvelmindHedge
-from flask import Flask, render_template, jsonify
+from marvelmind import MarvelmindHedge
+from flask import Flask, render_template, jsonify, render_template_string
 from time import sleep
 import sys
 import numpy as np
@@ -16,7 +16,23 @@ hedge.start()
 @app.route("/", methods=['GET', 'POST'])
 def main():
 
-    return True
+    return True 
+
+@app.route("/test", methods=['GET', 'POST'])
+def test():
+    value = "x y z"
+    t = render_template_string('''<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css url"/>
+    </head>
+    <body>
+        <p><h1>My flask is Running! </h1></p>
+    </body>
+</html>
+''')
+    return t
+
 
 @app.route("/update")
 def update():
@@ -28,7 +44,7 @@ def update():
             if (hedge.positionUpdated):
                 #  hedge.print_position()
                 _,x,y,z,_,TimeStamp = hedge.position() # BeaconID, X, Y, Z, Angle, Timestamp
-
+                # hedge.print_position()
                 # jsonify and return
                 templateData = {'data' : [x,y,z]}
                 return jsonify(templateData), 200

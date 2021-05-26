@@ -45,7 +45,7 @@ app.whenReady().then(() =>
 
   // ////////////////////////////// Spawn  here /////////////////////////////////
   var spawn = require("child_process").spawn;
-  var python = spawn('python',["./src/assets/app.py"]);
+  var python = spawn('python',["./src/assets/scripts/app.py"]);
   python.stdout.on('data', function (data) 
   {
     console.log("data: ", data.toString('utf8'));
