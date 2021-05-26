@@ -3,7 +3,7 @@ sudo adduser $USER dialout
 
 # Build Executable file
 cd src/assets
-pyinstaller --onefile --add-data 'templates:templates' --add-data 'static:static' app.py
+pyinstaller --onefile --add-data 'templates:templates' --add-data 'static:static' scripts/app.py
 
 # Run electron app
 npm install

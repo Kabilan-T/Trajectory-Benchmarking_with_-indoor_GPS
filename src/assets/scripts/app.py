@@ -1,4 +1,4 @@
-from scripts.marvelmind import MarvelmindHedge
+from marvelmind import MarvelmindHedge
 from flask import Flask, render_template, jsonify
 from time import sleep
 import sys
