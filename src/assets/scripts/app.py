@@ -1,5 +1,9 @@
 from marvelmind import MarvelmindHedge
+<<<<<<< HEAD:src/assets/scripts/app.py
 from flask import Flask, render_template, jsonify, render_template_string
+=======
+from flask import Flask, render_template, jsonify
+>>>>>>> 87aabb5cdb2392e3f5f39ccfd52c9fb799f687d3:src/assets/app.py
 from time import sleep
 import sys
 import numpy as np
