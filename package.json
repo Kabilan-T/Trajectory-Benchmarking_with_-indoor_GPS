@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Software Development Project SS2021 - Trajectory Benchmarking with indoor GPS",
   "main": "src/main.js",
+  "package": "npm run -s package-python && npm run -s package-electron && npm run -s package-cleanup",
+  "package-python": "pyinstaller -w --onefile --add-data src/assets/scripts/templates;templates --add-data src/assets/scripts/static;static src/assets/scripts/app.py",
+  "package-electron": "electron-builder",
+  "package-cleanup": "rm -rf build",
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux"
@@ -17,9 +21,12 @@
     "appId": "com.hbrs.gps_trajectory_gui",
     "productName": "GPS Trajectory GUI",
     "linux": {
-      "target": ["deb"],
+      "target": [
+        "deb",
+        "rpm"
+      ],
       "category": "Utility",
-      "icon": "build/ic_516x516.png",
+      "icon": "src/assets/icons/512x512.png",
       "maintainer": "Karthik Sundararaj <karthik.sundararaj@smail.inf.h-brs.de>",
       "description": "This is description"
     }

@@ -1,9 +1,7 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const child_process = require('child_process');
-const { exec } = require('child_process');
-
-
+var mypython;
 function createWindow () 
 {
   const mainWindow = new BrowserWindow
@@ -15,23 +13,36 @@ function createWindow ()
       preload: path.join(__dirname, 'preload.js')
     }
   })
-
-  mainWindow.loadFile('src/assets/templates/home.html')
-
+  mainWindow.loadFile('src/assets/scripts/templates/home.html')
 }
-
 
 app.whenReady().then(() => 
 {
-  // ////////////////////////////// Exec here /////////////////////////////////
+  
+  // ////////////////////////////// Spawn  here /////////////////////////////////
+  var spawn = require("child_process").spawn;
+  mypython = spawn('python',["./src/assets/scripts/app.py"]);
+  mypython.stdout.on('data', function (data) 
+  {
+    console.log("data: ", data.toString('utf8'));
+  });
+  mypython.stderr.on('data', (data) => 
+  {
+    console.log(`stderr: ${data}`); // when error
+  });
+  // ////////////////////////////// Spawn end here /////////////////////////////////
+  // setTimeout(()=>
+  // mypython.kill(9),30000)
+
+  ////////////////////////////// Exec here /////////////////////////////////
   // let backend;
   // backend = path.join(process.cwd(), 'src/assets/dist/app')
-  // var exec = child_process.exec;
-  // child_process.exec(
+  
+  // mypython = child_process.execFile(
   // backend,
   // (err, stdout, stderr) => {
   //   if (err) {
-  //   console.log(err);npm
+  //   console.log(err);
   //   }
   //   if (stdout) {
   //   console.log(stdout);
@@ -41,40 +52,28 @@ app.whenReady().then(() =>
   //   }
   // }
   // )
-  // ////////////////////////////// to  here /////////////////////////////////
+  ////////////////////////////// to  here /////////////////////////////////
+  // setInterval(()=> 
+  // {console.log("alive : ",mypython.killed);
+  // console.log("pid : ",mypython.pid)},
+  // 2000)
+  // setTimeout(()=>
+  // process.kill(mypython.pid),20000)
 
-  // ////////////////////////////// Spawn  here /////////////////////////////////
-  var spawn = require("child_process").spawn;
-  var python = spawn('python',["./src/assets/scripts/app.py"]);
-  python.stdout.on('data', function (data) 
-  {
-    console.log("data: ", data.toString('utf8'));
-  });
-  python.stderr.on('data', (data) => 
-  {
-    console.log(`stderr: ${data}`); // when error
-  });
-  // ////////////////////////////// to  here /////////////////////////////////
-  
+  // setInterval(()=> 
+  // console.log("alive : ",mypython.killed),
+  // 2000)
+  // setTimeout(()=>
+  // mypython.kill(9),20000)
+
   createWindow()
-
   app.on('activate', function () 
   {  
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 })
 
-
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
-  ////////////////////////////// Exec killing  here /////////////////////////////////
-  // exec('taskkill /f /t /im app', (err, stdout, stderr) => {
-  //       if (err) {
-  //       console.log(err)
-  //       return;
-  //       }
-  //       console.log(`stdout: ${stdout}`);
-  //       console.log(`stderr: ${stderr}`);
-  //     });
-  // ////////////////////////////// to  here /////////////////////////////////
+  mypython.kill(2) // Spawn py kill
 })

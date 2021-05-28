@@ -126,7 +126,7 @@ select {
       }]
     });
     const getSensorReading = function () {
-      fetch(`http://${location.host}/update`)  // send request to route /update
+      fetch(`http://127.0.0.1:5000/update`)  // send request to route /update
         .then((resp) => resp.json())
         .then(function (response) {
           document.getElementById('x_values').innerHTML = response.data[0];
@@ -134,11 +134,7 @@ select {
           document.getElementById('z_values').innerHTML = response.data[2];
           // console.log(response.data[0]);
 
-
-
-
           var updateInterval = 100;
-
 
           var updateChart = function () {
 

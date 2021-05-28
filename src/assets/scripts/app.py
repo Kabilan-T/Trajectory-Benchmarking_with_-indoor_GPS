@@ -1,9 +1,5 @@
 from marvelmind import MarvelmindHedge
-<<<<<<< HEAD:src/assets/scripts/app.py
 from flask import Flask, render_template, jsonify, render_template_string
-=======
-from flask import Flask, render_template, jsonify
->>>>>>> 87aabb5cdb2392e3f5f39ccfd52c9fb799f687d3:src/assets/app.py
 from time import sleep
 import sys
 import numpy as np
@@ -14,29 +10,12 @@ app = Flask(__name__)
 # Class initilization
 hedge = MarvelmindHedge(tty = "/dev/ttyACM0", adr=None, debug=False) # create MarvelmindHedge thread
 # start thread
+hedge.daemon = True
 hedge.start()
-
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
-
-    return True 
-
-@app.route("/test", methods=['GET', 'POST'])
-def test():
-    value = "x y z"
-    t = render_template_string('''<!doctype html>
-<html>
-    <head>
-        <link rel="stylesheet" href="css url"/>
-    </head>
-    <body>
-        <p><h1>My flask is Running! </h1></p>
-    </body>
-</html>
-''')
-    return t
-
+    return render_template('home.html')
 
 @app.route("/update")
 def update():
@@ -57,5 +36,19 @@ def update():
             hedge.stop()  # stop and close serial port
             sys.exit()
     
+@app.route("/test", methods=['GET', 'POST'])
+def test():
+    t = render_template_string('''<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css url"/>
+    </head>
+    <body>
+        <p><h1>My flask is Running! </h1></p>
+    </body>
+</html>
+''')
+    return t
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host='127.0.0.1', port=5000)
